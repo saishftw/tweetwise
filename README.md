@@ -57,25 +57,24 @@ OPENAI_API_KEY=your_key_here
 poetry run uvicorn main:app --reload
 ```
 
-The API will be available at `http://localhost:8000`
+The API will be available at `http://localhost:8080`
 
 ### Browser Extension Setup
 
-1. Navigate to the extension directory
-
-2. Load the extension in Chrome/Chromium:
+1. Load the extension in Chrome/Chromium:
    - Open Chrome/Chromium browser
    - Go to `chrome://extensions/`
    - Enable "Developer mode" in the top right
    - Click "Load unpacked"
+   - Navigate to the extension directory
    - Select the `browser_extension_client` folder in the directory
 
 ## Usage 📱
 
 1. Install the extension
 2. Navigate to Twitter/X.com
-3. Open any tweet thread
-4. Click the TweetWise extension icon to open the side panel
+3. Click the `TweetWise` extension icon to open the side panel
+4. Open any tweet thread
 5. Use commands:
    - `/summary` - Get thread summary
    - `/fact-check` - Verify claims
@@ -93,7 +92,7 @@ uvicorn main:app --reload --port 8000
 
 ## API Endpoints 🔌
 
-- `POST /api/ai/generate` - Generate thread summary, fact checking, sentiment based on the API request
+- `POST /api/ai/generate` - Generate thread summary, fact checking, sentiment checking ; hardcoded to OpenAI `gpt-4o-mini`
 
 ## Contributing 🤝
 
