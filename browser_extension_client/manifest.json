@@ -1,0 +1,53 @@
+{
+  "manifest_version": 3,
+  "name": "TweetWise",
+  "version": "1.0",
+  "permissions": [
+    "declarativeNetRequest",
+    "scripting",
+    "storage",
+    "webNavigation",
+    "sidePanel"
+  ],
+  "host_permissions": [
+    "*://x.com/*"
+  ],
+  "side_panel": {
+    "default_path": "panel.html"
+  },
+  "background": {
+    "service_worker": "service-worker.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://x.com/*"
+      ],
+      "js": [
+        "content.js",
+        "input-listener.js",
+        "tweet-parser.js",
+        "api_service.js",
+        "constants.js",
+        "script.js"
+      ],
+      "run_at": "document_start"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "interceptor.js",
+        "input-listener-inject.js",
+        "input-listener-inject.js",
+        "script.js"
+      ],
+      "matches": [
+        "*://x.com/*"
+      ]
+    }
+  ],
+  "action": {
+    "default_title": "Click to open panel"
+  }
+}
