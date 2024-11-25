@@ -1,1 +1,1 @@
-const API_URL = 'https://252e-103-40-73-99.ngrok-free.app/api/v1/ai/generate'
+const API_URL = 'http://localhost:8080/api/v1/ai/generate'

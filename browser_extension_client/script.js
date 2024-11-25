@@ -16,7 +16,7 @@ marked.setOptions({
 });
 
 const CHAT_KEYWORDS = {
-    '/SUMMARIZE': 'SUMMARIZE',
+    '/SUMMARY': 'SUMMARIZE',
     '/SENTIMENT-CHECK': 'SENTIMENT',
     '/FACT-CHECK': 'FACTCHECK'
 };
@@ -109,7 +109,7 @@ async function handleSend() {
         let actionData = interpretUserMessage(message)
 
         if (!actionData) {
-            addMessage("Hi there! Please type one of the following keywords to proceed: '/summarize,' '/fact-check,' or '/sentiment-check.' 😊")
+            addMessage("Hi there! Please type one of the following keywords to proceed: '/summary,' '/fact-check,' or '/sentiment-check.' 😊")
         }
 
         let currTweetDataRaw = await getCurrentTweetData()

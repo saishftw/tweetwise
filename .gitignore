@@ -1,1 +1,50 @@
-.env
+# Byte-compiled files
+*.py[cod]
+__pycache__/
+*.so
+
+# Virtual environment
+env/
+venv/
+ENV/
+*.venv
+
+# Development environment files
+.idea/
+.vscode/
+*.env
+
+# Python packages
+*.egg
+*.egg-info/
+dist/
+build/
+*.wheel
+
+# Logs and temporary files
+*.log
+*.tmp
+*.temp
+*.pid
+*.seed
+*.backup
+*.swp
+
+# Database and cache files
+*.sqlite3
+*.db
+*.pkl
+*.pyc
+
+# Mypy and Pytest caches
+.mypy_cache/
+.pytest_cache/
+
+# Coverage reports
+htmlcov/
+.coverage
+*.cover
+
+# Docker and related
+*.
+
