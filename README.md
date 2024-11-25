@@ -62,7 +62,7 @@ The API will be available at `http://localhost:8080`
 ### Browser Extension Setup
 
 1. Load the extension in Chrome/Chromium:
-   - Open Chrome/Chromium browser
+   - Open Chrome/Chromium browser (except Arc browser; does not support Side Panel)
    - Go to `chrome://extensions/`
    - Enable "Developer mode" in the top right
    - Click "Load unpacked"
