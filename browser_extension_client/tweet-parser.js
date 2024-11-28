@@ -51,7 +51,8 @@ function parseTweet(data) {
             if (!instructions || instructions.length === 0) throw new Error('No conversation instructions available');
 
             // Extract the original tweet (the first item in the conversation)
-            const mainEntry = instructions[0]?.entries[0]?.content?.itemContent?.tweet_results?.result;
+            // mainEntry can be a tweet or part of a conversationThread
+            const mainEntry = instructions[0]?.entries[0]?.content?.itemContent?.tweet_results?.result ?? instructions[0]?.entries[0]?.content?.items?.[0]?.item?.itemContent?.tweet_results?.result;
             if (!mainEntry) throw new Error('Main tweet data is missing');
             const originalTweet = extractTweet(mainEntry);
 

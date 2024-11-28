@@ -10,7 +10,7 @@
     "sidePanel"
   ],
   "host_permissions": [
-    "*://x.com/*"
+    "https://x.com/*"
   ],
   "side_panel": {
     "default_path": "panel.html"
@@ -21,15 +21,14 @@
   "content_scripts": [
     {
       "matches": [
-        "*://x.com/*"
+        "https://x.com/*"
       ],
       "js": [
         "content.js",
         "input-listener.js",
         "tweet-parser.js",
         "api_service.js",
-        "constants.js",
-        "script.js"
+        "constants.js"
       ],
       "run_at": "document_start"
     }
@@ -43,7 +42,7 @@
         "script.js"
       ],
       "matches": [
-        "*://x.com/*"
+        "https://x.com/*"
       ]
     }
   ],

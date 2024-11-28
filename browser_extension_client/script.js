@@ -1,7 +1,6 @@
 const chatMessages = document.getElementById('chat-messages');
 const chatInput = document.getElementById('chat-input');
 const sendButton = document.getElementById('send-button');
-const closeButton = document.getElementById('close-button');
 
 // Configure marked options
 marked.setOptions({
@@ -51,82 +50,78 @@ function addMessage(message, isUser = false) {
     chatMessages.insertBefore(messageDiv, chatMessages.firstChild);
 }
 
-function addFileAttachment(filename) {
-    const attachmentDiv = document.createElement('div');
-    attachmentDiv.classList.add('file-attachment');
+// function addFileAttachment(filename) {
+//     const attachmentDiv = document.createElement('div');
+//     attachmentDiv.classList.add('file-attachment');
 
-    const fileIcon = document.createElement('div');
-    fileIcon.classList.add('file-icon');
-    fileIcon.textContent = 'CSV';
+//     const fileIcon = document.createElement('div');
+//     fileIcon.classList.add('file-icon');
+//     fileIcon.textContent = 'CSV';
 
-    const fileInfo = document.createElement('div');
-    fileInfo.style.flex = 1;
-    fileInfo.textContent = filename;
+//     const fileInfo = document.createElement('div');
+//     fileInfo.style.flex = 1;
+//     fileInfo.textContent = filename;
 
-    const downloadButton = document.createElement('button');
-    downloadButton.classList.add('download-button');
-    downloadButton.innerHTML = `
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-  `;
+//     const downloadButton = document.createElement('button');
+//     downloadButton.classList.add('download-button');
+//     downloadButton.innerHTML = `
+//     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+//       <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" stroke-linecap="round" stroke-linejoin="round"/>
+//     </svg>
+//   `;
 
-    attachmentDiv.appendChild(fileIcon);
-    attachmentDiv.appendChild(fileInfo);
-    attachmentDiv.appendChild(downloadButton);
-    chatMessages.insertBefore(attachmentDiv, chatMessages.firstChild);
-}
+//     attachmentDiv.appendChild(fileIcon);
+//     attachmentDiv.appendChild(fileInfo);
+//     attachmentDiv.appendChild(downloadButton);
+//     chatMessages.insertBefore(attachmentDiv, chatMessages.firstChild);
+// }
 
-function getCurrentTweetData() {
-    return new Promise((resolve, reject) => {
-        chrome.runtime.sendMessage({ type: "getTweetDataFromBackground" }, (response) => {
-            if (response && response.data) {
-                resolve(response.data);
-            } else {
-                console.log("No Tweet data received from background.");
-                resolve(null); // Resolve with null if no data
-            }
-        });
+function getTweetData() {
+    return chrome.storage.session.get(["tweetData"]).then((result) => {
+        return result.tweetData ?? null
     });
 }
 
 addMessage("Hello, I'm **TweetWise**, your Twitter assistant! Need a quick summary, a fact check, or sentiment analysis? Just tag me with `/summary`, `/fact-check`, or `/sentiment-check`, and I'll do the rest!")
 
-// if (await getCurrentTweetData()) {
-//     addMessage("Tweet Loaded")
-// }
-
 async function handleSend() {
     const message = chatInput.value.trim();
     if (message) {
-        addMessage(message, true);
-        chatInput.value = '';
+        try {
 
-        // Add loading indicator
-        loadingIndicator = createLoadingIndicator();
-        chatMessages.insertBefore(loadingIndicator, chatMessages.firstChild);
+            addMessage(message, true);
+            chatInput.value = '';
 
-        let actionData = interpretUserMessage(message)
+            // Add loading indicator
+            loadingIndicator = createLoadingIndicator();
+            chatMessages.insertBefore(loadingIndicator, chatMessages.firstChild);
 
-        if (!actionData) {
-            addMessage("Hi there! Please type one of the following keywords to proceed: '/summary,' '/fact-check,' or '/sentiment-check.' 😊")
+            let actionData = interpretUserMessage(message)
+
+            if (!actionData) {
+                addMessage("Hi there! Please type one of the following keywords to proceed: '/summary,' '/fact-check,' or '/sentiment-check.'")
+                return
+            }
+
+            let currTweetData = await getTweetData()
+            if (!currTweetData) {
+                addMessage("Please open the Twitter thread you'd like me to analyze. Once you have it open, let me know whether you'd like a summary, fact-check, or sentiment-check, and I'll guide you from there!")
+                return
+            }
+
+            let parsedTweet = parseTweet(currTweetData)
+
+            let data = {
+                action: actionData.action,
+                twitter_thread: parsedTweet
+            }
+            let response = await generateResponse(data)
+            addMessage(response)
         }
-
-        let currTweetDataRaw = await getCurrentTweetData()
-
-        if (!currTweetDataRaw) {
-            addMessage("Please open the Twitter thread you'd like me to analyze. Once you have it open, let me know whether you'd like a summary, fact-check, or sentiment-check, and I'll guide you from there!")
-            return
+        catch (e) {
+            addMessage("Oops! Something went wrong, please refresh and try again.")
+            console.error(e)
         }
-
-        let parsedTweet = parseTweet(currTweetDataRaw)
-
-        let data = {
-            action: actionData.action,
-            twitter_thread: parsedTweet
-        }
-        let response = await generateResponse(data)
-        addMessage(response)
     }
 }
 
@@ -164,8 +159,4 @@ chatInput.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') {
         handleSend();
     }
-});
-
-closeButton.addEventListener('click', () => {
-    console.log('Close button clicked');
 });
