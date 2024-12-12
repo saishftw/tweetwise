@@ -26,13 +26,15 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
             chrome.storage.session.set({ "twitterRequestType": twitterRequestType }).then(() => {
                 console.log("Chrome storage value set: twitterRequestType");
             });
-
+            
+            // addInfoMessage('Thread loaded!', 'info')
             console.log(currTwitterThread)
             console.log('Request Type: ' + twitterRequestType)
 
             sendResponse({ status: "success" });
         }
         else {
+            // addInfoMessage('Failed to load thread, please refresh', 'info')
             sendResponse({ status: "error", detail: "Invalid twitter thread data" });
         }
     }
@@ -49,10 +51,12 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
                 console.log("Chrome storage value set: twitterRequestType");
             });
             
+            // addInfoMessage('Feed loaded!', 'info')
             console.log('Request Type: ' + twitterRequestType)
             sendResponse({ status: "success" });
         }
         else {
+            // addInfoMessage('Failed to load feed, please refresh!', 'info')
             sendResponse({ status: "error", detail: "Invalid twitter wall data" });
         }
     }
@@ -67,6 +71,13 @@ chrome.storage.onChanged.addListener(async (changes, namespace) => {
 
     }
 });
+
+function addInfoMessage(message) {
+    const messageDiv = document.createElement('div');
+    messageDiv.classList.add('info-message');
+    messageDiv.textContent = message;
+    chatMessages.insertBefore(messageDiv, chatMessages.firstChild);
+}
 
 async function sendDataToContent(data) {
     // const data = { "type": "getSelectedCitationFromExtension", "data": data }

@@ -9,16 +9,21 @@ export default function Footer() {
           <div>
             <h3 className="text-white font-semibold mb-4">Contact</h3>
             <div className="space-y-3">
-              <a href="mailto:hello@tweetwise.app" className="flex items-center gap-2 text-gray-400 hover:text-white transition">
+              <a href="mailto:admin@mlnb.org" className="flex items-center gap-2 text-gray-400 hover:text-white transition">
                 <Mail className="h-4 w-4" />
-                hello@tweetwise.app
+                admin@mlnb.org
               </a>
             </div>
           </div>
           <div>
             <h3 className="text-white font-semibold mb-4">Community</h3>
             <div className="space-y-3">
-              <a href="#" className="flex items-center gap-2 text-gray-400 hover:text-white transition">
+              <a 
+                href="https://github.com/saishftw/tweetwise"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-gray-400 hover:text-white transition"
+              >
                 <MessageCircle className="h-4 w-4" />
                 Forum
               </a>
@@ -27,11 +32,12 @@ export default function Footer() {
           <div>
             <h3 className="text-white font-semibold mb-4">Social</h3>
             <div className="space-y-3">
-              <a href="#" className="flex items-center gap-2 text-gray-400 hover:text-white transition">
-                <Twitter className="h-4 w-4" />
-                Twitter
-              </a>
-              <a href="#" className="flex items-center gap-2 text-gray-400 hover:text-white transition">
+              <a 
+                href="https://github.com/saishftw/tweetwise"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-gray-400 hover:text-white transition"
+              >
                 <Github className="h-4 w-4" />
                 GitHub
               </a>
@@ -49,6 +55,17 @@ export default function Footer() {
         <div className="mt-12 pt-8 border-t border-gray-800">
           <p className="text-center text-gray-400">
             © {new Date().getFullYear()} TweetWise. All rights reserved.
+          </p>
+          <p className="text-center text-gray-500 mt-2">
+            TweetWise is an open-source project.{' '}
+            <a 
+              href="https://github.com/saishftw/tweetwise"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-400 hover:text-blue-300"
+            >
+              View on GitHub
+            </a>
           </p>
         </div>
       </div>

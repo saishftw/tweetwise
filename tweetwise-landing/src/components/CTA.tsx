@@ -2,6 +2,18 @@ import React from 'react';
 import { Download, Users } from 'lucide-react';
 
 export default function CTA() {
+  const handleDownload = () => {
+    window.location.href = 'https://github.com/saishftw/tweetwise/releases/download/v0.1/tweetwise-extension.zip';
+    const installationSection = document.getElementById('installation');
+    if (installationSection) {
+      installationSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const handleCommunity = () => {
+    window.open('https://github.com/saishftw/tweetwise', '_blank');
+  };
+
   return (
     <section className="relative py-24 overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-purple-600" />
@@ -12,16 +24,22 @@ export default function CTA() {
             Ready to Transform Your Twitter Experience?
           </h2>
           <p className="mt-4 text-lg text-blue-100">
-            Join thousands of users who have already enhanced their social media journey
+            Join our open-source community and enhance your social media journey
           </p>
           <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-            <button className="rounded-full bg-white px-8 py-3 text-sm font-semibold text-blue-600 shadow-lg transition hover:bg-blue-50 hover:shadow-blue-200/50 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-600">
+            <button 
+              onClick={handleDownload}
+              className="rounded-full bg-white px-8 py-3 text-sm font-semibold text-blue-600 shadow-lg transition hover:bg-blue-50 hover:shadow-blue-200/50 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-600"
+            >
               <div className="flex items-center gap-2">
                 <Download className="h-4 w-4" />
                 Download Now
               </div>
             </button>
-            <button className="rounded-full bg-blue-400/20 px-8 py-3 text-sm font-semibold text-white shadow-lg transition hover:bg-blue-400/30 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-600">
+            <button 
+              onClick={handleCommunity}
+              className="rounded-full bg-blue-400/20 px-8 py-3 text-sm font-semibold text-white shadow-lg transition hover:bg-blue-400/30 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-600"
+            >
               <div className="flex items-center gap-2">
                 <Users className="h-4 w-4" />
                 Join the Community

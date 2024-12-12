@@ -1,22 +1,23 @@
 import React from 'react';
-import { Download, Settings, Zap } from 'lucide-react';
+import { Download, Zap } from 'lucide-react';
 
 const steps = [
   {
     title: 'Install Extension',
-    description: 'Download TweetWise from the Chrome Web Store',
+    description: 'Download and install TweetWise manually',
     icon: Download,
-  },
-  {
-    title: 'Configure Settings',
-    description: 'Customize your AI insights preferences',
-    icon: Settings,
+    action: () => {
+      const installationSection = document.getElementById('installation');
+      if (installationSection) {
+        installationSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
   },
   {
     title: 'Start Browsing',
     description: 'Experience enhanced Twitter browsing instantly',
     icon: Zap,
-  },
+  }
 ];
 
 export default function HowItWorks() {
@@ -28,15 +29,18 @@ export default function HowItWorks() {
             How It Works
           </h2>
           <p className="mt-4 text-lg text-gray-600">
-            Get started with TweetWise in three simple steps
+            Get started with TweetWise in two simple steps
           </p>
         </div>
         <div className="relative">
           <div className="absolute top-1/2 left-0 w-full h-0.5 bg-gray-200 -translate-y-1/2" />
-          <div className="relative grid grid-cols-1 gap-8 md:grid-cols-3">
+          <div className="relative grid grid-cols-1 gap-8 md:grid-cols-2">
             {steps.map((step, index) => (
               <div key={step.title} className="relative">
-                <div className="bg-white rounded-2xl p-8 shadow-lg">
+                <div 
+                  className={`bg-white rounded-2xl p-8 shadow-lg ${step.action ? 'cursor-pointer hover:shadow-xl transition-shadow' : ''}`}
+                  onClick={step.action}
+                >
                   <div className="absolute -top-4 left-1/2 -translate-x-1/2">
                     <div className="flex items-center justify-center w-8 h-8 rounded-full bg-blue-600 text-white">
                       {index + 1}

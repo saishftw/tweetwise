@@ -2,6 +2,14 @@ import React from 'react';
 import { Twitter, Download } from 'lucide-react';
 
 export default function Header() {
+  const handleDownload = () => {
+    window.location.href = 'https://github.com/saishftw/tweetwise/releases/download/v0.1/tweetwise-extension.zip';
+    const installationSection = document.getElementById('installation');
+    if (installationSection) {
+      installationSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <header className="relative overflow-hidden bg-white py-24">
       <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-purple-50" />
@@ -15,8 +23,19 @@ export default function Header() {
           <p className="mt-6 text-lg leading-8 text-gray-600">
             AI Insights for Your Twitter/X Experience
           </p>
+          <div className="mt-4">
+            <span className="inline-flex items-center rounded-full bg-blue-100 px-3 py-1 text-sm font-medium text-blue-700">
+              🎉 Open Source Project
+            </span>
+          </div>
+          <p className="mt-4 text-sm text-gray-500">
+            Coming soon to Chrome Web Store. For now, follow our manual installation guide.
+          </p>
           <div className="mt-10 flex items-center justify-center gap-x-6">
-            <button className="rounded-full bg-blue-600 px-8 py-3 text-sm font-semibold text-white shadow-lg transition hover:bg-blue-500 hover:shadow-blue-200/50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+            <button 
+              onClick={handleDownload}
+              className="rounded-full bg-blue-600 px-8 py-3 text-sm font-semibold text-white shadow-lg transition hover:bg-blue-500 hover:shadow-blue-200/50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+            >
               <div className="flex items-center gap-2">
                 <Download className="h-4 w-4" />
                 Download Now

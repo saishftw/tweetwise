@@ -4,17 +4,17 @@ const screenshots = [
   {
     title: 'Thread Analysis',
     description: 'AI-powered insights for Twitter threads',
-    image: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&q=80',
+    image: 'https://raw.githubusercontent.com/saishftw/tweetwise/main/screenshots/tweetwise_summary.JPG',
   },
   {
     title: 'Sentiment Detection',
     description: 'Real-time emotion analysis',
-    image: 'https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?auto=format&fit=crop&q=80',
+    image: 'https://raw.githubusercontent.com/saishftw/tweetwise/main/screenshots/tweetwise_sentiment.JPG',
   },
   {
     title: 'Fact Checking',
     description: 'Automated verification system',
-    image: 'https://images.unsplash.com/photo-1611162618071-b39a2ec055fb?auto=format&fit=crop&q=80',
+    image: 'https://raw.githubusercontent.com/saishftw/tweetwise/main/screenshots/tweetwise_factcheck.JPG',
   },
 ];
 

@@ -69,8 +69,8 @@ async function getTwitterData() {
 }
 
 function startChat() {
-    const greeting = "Hello, I'm **TweetWise**, your X assistant! You can start chatting directly with the thread or feed, or use commands by typing '/'!"
-    addMessage(parseMarkdown(greeting))
+    const greeting = "Hello, I'm **TweetWise**, your X assistant! You can start chatting directly with the thread or feed, or use commands by typing `'/'`'."
+    addMessage(greeting)
 }
 
 
@@ -118,8 +118,8 @@ async function handleSend() {
                 let data = {
                     action: actionData.action,
                     twitter_data: twitterData,
-                    twitter_request_type: twitterRequestType
-
+                    twitter_request_type: twitterRequestType,
+                    // model_name: 'gpt-4o-mini'
                 }
                 response = await generateResponse(data)
             }

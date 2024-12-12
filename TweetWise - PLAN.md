@@ -75,8 +75,8 @@ ENHANCEMENTS:
         - topics browsed
     - store locally as cookies
 - Refine bot messages according to new features ✅
-- Build product landing page ⭕️
-    - Download extension
-    - Mention coming soon on Chrome web store
-    - Instructions on how to install extension
-    - Video on how to use extension with features
+- Build product landing page ✅
+    - Download extension ✅
+    - Mention coming soon on Chrome web store ✅
+    - Instructions on how to install extension ✅
+    - Video on how to use extension with features ❌ 
