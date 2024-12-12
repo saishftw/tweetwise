@@ -78,7 +78,7 @@ The API will be available at `http://localhost:8080`
 5. Use commands:
    - `/summary` - Get thread summary
    - `/fact-check` - Verify claims
-   - `/sentiment-check` - Analyze sentiment
+   - `/sentiment` - Analyze sentiment
 
 ## Development 👩‍💻
 

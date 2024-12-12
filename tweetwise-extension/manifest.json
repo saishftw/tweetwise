@@ -1,0 +1,48 @@
+{
+  "manifest_version": 3,
+  "name": "TweetWise",
+  "version": "1.0",
+  "permissions": [
+    "declarativeNetRequest",
+    "storage",
+    "sidePanel"
+  ],
+  "side_panel": {
+    "default_path": "sidePanel.html"
+  },
+  "background": {
+    "service_worker": "service-worker.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://x.com/*"
+      ],
+      "js": [
+        "content.js",
+        "tweet-highlighter.js"
+      ],
+      "run_at": "document_start"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "twitter-api-interceptor.js",
+        "tweet-highlighter.js"
+      ],
+      "matches": [
+        "https://x.com/*"
+      ]
+    }
+  ],
+  "action": {
+    "default_title": "Click to open panel"
+  },
+  "icons": {
+    "16": "tweetwise-logo.png",
+    "32": "tweetwise-logo.png",
+    "48": "tweetwise-logo.png",
+    "128": "tweetwise-logo.png"
+  }
+}
